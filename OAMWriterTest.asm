@@ -53,9 +53,22 @@ main:
 	STA $06
 	LDY #$01FC
 	JSL UberasmToolOAMWrite_WriteOAM
+	
+	;Second OAM slot test
+	REP #$20
+	LDA !Freeram_OAMXPos
+	CLC
+	ADC #$0010
+	STA $00
+	LDA !Freeram_OAMYPos
+	STA $02
+	SEP #$20
+	LDA #$40
+	STA $04
+	LDA.b #%00110000
+	STA $05
+	LDA #$01
+	STA $06
+	JSL UberasmToolOAMWrite_WriteOAM
 	SEP #$30
-	STZ $19
-	BCC +
-	INC $19
-	+
 	RTL
