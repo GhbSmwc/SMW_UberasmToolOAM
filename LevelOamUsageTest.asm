@@ -52,7 +52,7 @@ main:
 	LDA #$01
 	STA $06
 	LDY #$01FC
-	JSL UberasmToolOAMWrite_WriteOAM
+	JSL LibraryOAMWrite_WriteOAM
 	
 	;Second OAM slot test
 	REP #$20
@@ -69,6 +69,6 @@ main:
 	STA $05
 	LDA #$01
 	STA $06
-	JSL UberasmToolOAMWrite_WriteOAM
+	JSL LibraryOAMWrite_WriteOAM
 	SEP #$30
 	RTL
