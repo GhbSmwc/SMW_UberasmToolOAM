@@ -35,9 +35,8 @@ WriteOAM:
 	
 	.SlotFound
 	..YPosHandle
-	print "-----------------------------------",pc
 	REP #$20
-	LDA $06					;\Position #$FFF8 is invisible for 8x8 tiles and
+	LDA $06					;\Position #$FFF8 (X and Y) is invisible for 8x8 tiles and
 	ASL					;|Position #$FFF0 is invisible for 16x16 tiles.
 	AND #$00FF				;/
 	TAX
@@ -64,7 +63,7 @@ WriteOAM:
 	LDA $00					;\Determine if on-screen horizontally
 	CMP #$0100				;|
 	BCC ..OnScreenHoriz			;|
-	CMP.l TopLeftScreenBoundaryPos,x		;|
+	CMP.l TopLeftScreenBoundaryPos,x	;|
 	BCS ..OnScreenHoriz			;/
 	BRA .OffScreen				;>If not skip the whole thing.
 	
