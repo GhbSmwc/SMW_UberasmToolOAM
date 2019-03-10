@@ -34,10 +34,6 @@ WriteOAM:
 	RTL
 	
 	.SlotFound
-	LDA $04				;\Tile number
-	STA $0202|!addr,y		;/
-	LDA $05				;\Tile properties
-	STA $0203|!addr,y		;/
 	
 	..YPosHandle
 	REP #$20			;\Don't take up a slot of offscreen vertically.
@@ -123,15 +119,22 @@ WriteOAM:
 	EOR #$FF
 	AND $0420|!addr,y
 	STA $0420|!addr,y
-	BRA .Done
+	BRA .HandleTiles
 	
 	...SixteenBySixteenTile
 	LDA $0420|!addr,y
 	ORA BitTableTileSize,x
 	STA $0420|!addr,y
 	
-	.Done
+	
+	.HandleTiles
 	PLY
+	LDA $04				;\Tile number
+	STA $0202|!addr,y		;/
+	LDA $05				;\Tile properties
+	STA $0203|!addr,y		;/
+	
+	.Done
 	DEY #4
 	CLC
 	RTL
